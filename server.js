@@ -26,15 +26,15 @@ const authRoutes = require('./routes/auth.routes')
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// app.use(session({ secret: 'xyz567', 
-// store: MongoStore.create(mongoose.connection), 
-// resave: false, saveUninitialized: false,   
-// cookie: {
-//   secure: process.env.NODE_ENV == 'production',
-// } 
-// }))
+app.use(session({ secret: 'abc123', 
+store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/BorderApi' }), 
+resave: false, saveUninitialized: false,   
+cookie: {
+  secure: process.env.NODE_ENV == 'production',
+} 
+}))
 
-// 
+
 if(process.env.NODE_ENV !== 'production') {
   app.use(
     cors({
