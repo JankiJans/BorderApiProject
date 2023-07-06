@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 const adsRoutes = require('./routes/ads.routes');
-const authRoutes = require('./routes/auth.routes')
+const authRoutes = require('./routes/auth.routes');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -69,3 +69,5 @@ db.on('error', (err) => console.log('Error ' + err));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
+
+module.exports = server;

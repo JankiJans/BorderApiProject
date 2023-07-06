@@ -24,7 +24,7 @@ exports.post = async (req, res) => {
   try {
     const { title, description, date, photo, location, sellerInfo } = req.body;
 
-    const deleteFileInCaseOfError = req.file ? path.join(__dirname, '../public/uploads/', req.file.filename) : '';
+    const deleteFileInCaseOfError = req.file ? path.join(__dirname, '../public/uploads/img/', req.file.filename) : '';
 
     const newAd = new Concert({
       title: title,

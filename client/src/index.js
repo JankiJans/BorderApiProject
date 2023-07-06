@@ -4,16 +4,17 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Root = () => (
-  <BrowserRouter>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
-  </BrowserRouter>
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
+);
