@@ -11,6 +11,8 @@ import {
   NavLink,
 } from 'reactstrap';
 
+
+
 const MainMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,6 +51,13 @@ const MainMenu = () => {
                 <NavLink href="/register">
                   <Button outline color="warning">
                     Register
+                  </Button>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/logout">
+                  <Button outline color="warning">
+                    Logout
                   </Button>
                 </NavLink>
               </NavItem>

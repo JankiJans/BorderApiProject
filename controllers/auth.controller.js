@@ -31,26 +31,31 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { login, password, phone } = req.body;
-    if (login && typeof login === 'string' && password && typeof password === 'string' && phone && typeof phone === 'string') {
+    const { login, password } = req.body;
+
+    if ( login && typeof login === 'string' && password && typeof password === 'string') {
       const user = await User.findOne({ login });
-      if (user) {
-        if (bcrypt.compareSync(password, user.password) && user.phone === phone) {
-          req.session.login = user.login;
-          res.status(200).send({ message: 'Login successful' });
-        } else {
-          res.status(400).send({ message: 'Incorrect login, password, or phone' });
-        }
-      } else {
-        res.status(400).send({ message: 'Incorrect login, password, or phone' });
+      if (!user) {
+        res.status(400).send({ message: 'Login or password are incorrect' });
       }
-    } else {
+      else {
+        if (bcrypt.compareSync(password, user.password)){
+          req.session.user = { login: user.login, id: user._id };
+          res.status(200).send({ message: 'Login successful'});
+        }
+        else {
+          res.status(400).send({ message: 'Login or password are incorrect' });
+        }
+      }
+    }
+    else {
       res.status(400).send({ message: 'Bad request' });
     }
-  } catch (err) {
+  }
+  catch(err) {
     res.status(500).send({ message: err.message });
   }
-};
+}
 
 exports.getUser = async (req, res) => {
   res.send(req.session);
