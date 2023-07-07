@@ -11,13 +11,20 @@ import {
   NavLink,
 } from 'reactstrap';
 
-
+import { getUser } from '../../../redux/usersRedux';
+import { useSelector } from 'react-redux';
 
 const MainMenu = () => {
+  const loggedInUser = useSelector(getUser);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    window.location.reload();
   };
 
   return (
@@ -40,27 +47,27 @@ const MainMenu = () => {
           </div>
           <div>
             <Nav className="ml-auto align-items-center" navbar>
-              <NavItem>
-                <NavLink href="/login">
-                  <Button outline color="warning">
-                    Login
-                  </Button>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/register">
-                  <Button outline color="warning">
-                    Register
-                  </Button>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/logout">
-                  <Button outline color="warning">
-                    Logout
-                  </Button>
-                </NavLink>
-              </NavItem>
+                <NavItem>
+                  <NavLink href="/logout">
+                  {loggedInUser &&<Button outline color="warning" onClick={handleLogout}>
+                      Logout
+                    </Button>}
+                  </NavLink>
+                </NavItem>
+                  <NavItem>
+                    <NavLink href="/login">
+                    {!loggedInUser &&<Button outline color="warning">
+                        Login
+                      </Button>}
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink href="/register">
+                    {!loggedInUser &&<Button outline color="warning">
+                        Register
+                      </Button>}
+                    </NavLink>
+                  </NavItem>
             </Nav>
           </div>
         </Collapse>
