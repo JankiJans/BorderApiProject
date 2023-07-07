@@ -3,9 +3,11 @@ import { applyMiddleware, compose, combineReducers, legacy_createStore as create
 
 import initialState from './initialState'
 import usersReducer from './usersRedux';
+import adsReducer from './adsRedux'
 
 const subreducers = {
-  user: usersReducer
+  user: usersReducer,
+  ads: adsReducer
 }
 const reducer = combineReducers(subreducers);
 

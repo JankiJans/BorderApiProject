@@ -21,7 +21,6 @@ export const logOut = () => {
     type: LOG_OUT,
   };
 };
-  
 
 const SAVE_USER_TO_LOCAL_STORAGE = createActionName('SAVE_USER_TO_LOCAL_STORAGE');
 export const saveUserToLocalStorage = () => ({
