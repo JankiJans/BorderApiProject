@@ -5,15 +5,11 @@ import { useState } from 'react'
 import { API_URL } from '../../../config'
 
 const Register = () => {
-  
-
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [avatar, setAvatar] = useState(null)
   const [status, setStatus] = useState(null) //null, loading, succes, serverError, clientError, loginError
-
-  
 
   const handleSubmit = (e) => {
     e.preventDefault()

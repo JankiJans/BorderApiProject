@@ -6,6 +6,7 @@ import Home from './components/pages/home/HomePage'
 import Register from './components/pages/register/RegisterPage'
 import Login from './components/pages/login/LoginPage';
 import Logout from './components/pages/logut/LogutPage';
+import AdAdd from './components/pages/adAdd/adAdd'
 
 //redux imports
 import { useDispatch } from 'react-redux';
@@ -30,6 +31,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout/>} />
+        <Route path="/adAdd" element={<AdAdd/>} />
       </Routes>
     </MainLayout>
   );

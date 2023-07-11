@@ -1,4 +1,6 @@
 import shortid from 'shortid'
+import axios from 'axios'
+import { API_URL } from '../config'
 
 export const getAllAds = ({ ads }) => ads
 export const getAdById = ({ ads }, id) => ads.find((ad) => ad._id === id)
@@ -15,6 +17,18 @@ export const editAd = (payload) => ({ type: EDIT_AD, payload })
 export const addAd = (payload) => ({ type: ADD_AD, payload })
 export const removeAd = (payload) => ({ type: REMOVE_AD, payload })
 export const searchAd = (payload) => ({type: SEARCH_ADS,payload: { payload },})
+
+export const fetchAds = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`${API_URL}/api/ads`);
+  
+      dispatch(updateAds(response.data));
+    } catch (error) {
+      console.log(error); 
+    }
+  };
+};
 
 const adsReducer = (statePart = [], action) => {
   switch (action.type) {

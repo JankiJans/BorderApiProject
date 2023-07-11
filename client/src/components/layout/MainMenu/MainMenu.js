@@ -34,16 +34,6 @@ const MainMenu = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar className="justify-content-between">
           <div>
-            <Nav className="ml-auto align-items-center" navbar>
-              <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-              </Form>
-            </Nav>
           </div>
           <div>
             <Nav className="ml-auto align-items-center" navbar>
