@@ -27,7 +27,7 @@ const HomePage = () => {
                 />
               </Form>
             <div>
-            <NavLink href="/adAdd">
+            <NavLink href="/ads/add">
             {loggedInUser &&<Button className='mx-2' variant='warning'>ADD AD</Button>}
             </NavLink>
             </div>

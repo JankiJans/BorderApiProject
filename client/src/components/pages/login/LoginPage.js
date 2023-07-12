@@ -5,12 +5,16 @@ import { API_URL } from '../../../config'
 import { useDispatch } from 'react-redux'
 import { logIn } from '../../../redux/usersRedux'
 
+import { useNavigate } from 'react-router-dom'
+
 
 const Login = () => {
 
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
   const [status, setStatus] = useState(null)
+
+  const navigate = useNavigate()
 
   const dispatch = useDispatch();
 
@@ -30,6 +34,7 @@ const Login = () => {
         if(res.status === 200) {
           setStatus('success')
           dispatch(logIn({ login }))
+          navigate('/')
         } else if(res.status === 400) {
           setStatus('clientError')
         } else {

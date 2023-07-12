@@ -1,9 +1,8 @@
-import shortid from 'shortid'
 import axios from 'axios'
 import { API_URL } from '../config'
 
 export const getAllAds = ({ ads }) => ads
-export const getAdById = ({ ads }, id) => ads.find((ad) => ad._id === id)
+export const getAdById = ({ ads }, id) => ads.find((ad) => ad._id === id);
 
 const createActionName = (actionName) => `app/ads/${actionName}`
 const UPDATE_ADS = createActionName('UPDATE_ADS')
@@ -36,10 +35,10 @@ const adsReducer = (statePart = [], action) => {
       return [...action.payload]
     case EDIT_AD:
       return statePart.map((ad) =>
-        ad.id === action.payload.id ? { ...ad, ...action.payload } : ad,
+      ad.id === action.payload.id ? { ...ad, ...action.payload } : ad,
       )
     case ADD_AD:
-      return [...statePart, { ...action.payload, _id: shortid() }]
+      return [...statePart, { ...action.payload }]
     case REMOVE_AD:
       return statePart.filter((ad) => ad._id !== action.payload)
     case SEARCH_ADS:

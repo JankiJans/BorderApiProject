@@ -7,6 +7,9 @@ import Register from './components/pages/register/RegisterPage'
 import Login from './components/pages/login/LoginPage';
 import Logout from './components/pages/logut/LogutPage';
 import AdAdd from './components/pages/adAdd/adAdd'
+// import EditAdd from './components/pages/addEdit/addEdit';
+import RemoveAd from './components/pages/adRemove/adRemove';
+import EditAds from './components/pages/addEdit/addEditPage';
 
 //redux imports
 import { useDispatch } from 'react-redux';
@@ -31,7 +34,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout/>} />
-        <Route path="/adAdd" element={<AdAdd/>} />
+        <Route path="/ads/add" element={<AdAdd/>} />
+        <Route path="/ads/edit/:id" element={<EditAds/>} />
+        <Route path="/removeAd" element={<RemoveAd/>} />
       </Routes>
     </MainLayout>
   );

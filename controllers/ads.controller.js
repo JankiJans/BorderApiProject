@@ -38,7 +38,7 @@ exports.post = async (req, res) => {
       ['image/png', 'image/jpeg', 'image/gif'].includes(fileType)
     ) {
 
-    // console.log(req.session.user.login)
+    console.log(req.session)
 
     const newAd = new Ads({
       title: title,
@@ -47,7 +47,7 @@ exports.post = async (req, res) => {
       price: price,
       image: req.file.filename,
       location: location,
-      user: req.session.user.login
+      user: '64a6f24396e66a3e8424df0a'
       // userId: req.session.user._id
     }) 
 
@@ -74,18 +74,27 @@ exports.post = async (req, res) => {
 
 
 exports.update = async (req, res) => {
-  const { title, description, date, image, location, user } = req.body;
+  const { title, description, location, price, date } = req.body;
 
   try {
     const ad = await Ads.findById(req.params.id);
+    const fileType = req.file ? await getImageFileType(req.file) : 'unknown';
     if (ad) {
-      await Ads.updateOne({ _id: req.params.id }, { $set: { title, description, date, image, location, user } });
-      res.json({ message: 'Document edited' });
-    } else {
-      res.status(404).json({ message: 'Not found...' });
+      ad.title = title;
+      ad.description = description;
+      ad.price = price;
+      ad.location = location;
+      ad.date = date;
+    } if (
+      req.file &&
+      ['image/png', 'image/jpeg', 'image/gif'].includes(fileType)
+    ) {
+      ad.image = req.file.filename;
     }
+
+    const updatedAd = await ad.save();
+    res.json(updatedAd);
   } catch (err) {
-    // fs.unlinkSync(deleteFileInCaseOfError);
     res.status(500).json({ message: err.message });
   }
 };
