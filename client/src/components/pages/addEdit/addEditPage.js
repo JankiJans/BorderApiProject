@@ -16,8 +16,9 @@ const EditAds = () => {
     dispatch(fetchAds());
   }, [dispatch]);
 
-  const ads = useSelector((state) => state.ads);
+  // const ads = useSelector((state) => state.ads);
   const adData = useSelector((state) => getAdById(state, id));
+  console.log(adData)
 
   const handleSubmit = (ad) => {
     const fd = new FormData();
@@ -38,6 +39,7 @@ const EditAds = () => {
     fetch(`${API_URL}/api/ads/${id}`, options)
       .then((res) => {
         if (res.status === 200) {
+          setStatus('succes')
           dispatch(editAd({ ...adData, id }));
           setTimeout(() => navigate('/'), 2000);
         } else if (res.status === 400) {
@@ -65,12 +67,6 @@ const EditAds = () => {
           <Alert.Heading>Not enough data or data are incorrect</Alert.Heading>
           <p>You have to fill all the fields. Photo has to be one of this type of file: *.jpg, *.jpeg, *.gif, *.png.</p>
         </Alert>
-      )}
-
-      {status === 'loading' && (
-        <Spinner animation="border" role="status" className="d-block mx-auto">
-          <span className="visually-hidden">Loading..</span>
-        </Spinner>
       )}
 
       {status === 'serverError' && (

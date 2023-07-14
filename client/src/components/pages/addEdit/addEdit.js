@@ -12,7 +12,9 @@ const EditAdd = ({ action, actionText, ...props }) => {
   const [date, setDate] = useState(props.date || '');
   const [image, setImage] = useState(props.image || '');
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
     if (description && date) {
       action({
         price,
@@ -36,7 +38,7 @@ const EditAdd = ({ action, actionText, ...props }) => {
       </div>
       <Form.Group className="mb-3" controlId="formTitle">
         <Form.Label>Title</Form.Label>
-        <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter title" />      
+        <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Enter title" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formPassword">

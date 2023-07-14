@@ -36,7 +36,7 @@ function App() {
         <Route path="/logout" element={<Logout/>} />
         <Route path="/ads/add" element={<AdAdd/>} />
         <Route path="/ads/edit/:id" element={<EditAds/>} />
-        <Route path="/removeAd" element={<RemoveAd/>} />
+        <Route path="/ads/remove/:id" element={<RemoveAd/>} />
       </Routes>
     </MainLayout>
   );

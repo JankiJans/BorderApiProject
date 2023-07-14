@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAds } from '../../../redux/adsRedux';
-import { Card, ListGroup, Button, NavLink } from 'react-bootstrap';
+import { Card, ListGroup, Button } from 'react-bootstrap';
 import { IMAGES_URL } from '../../../config';
 import { useNavigate } from 'react-router-dom';
-
 
 const Ad = () => {
   const ads = useSelector(state => state.ads);
@@ -22,6 +21,10 @@ const Ad = () => {
     navigate(`/ads/edit/${id}`);
   };
 
+  const handleRemove = (id) => {
+    navigate(`/ads/remove/${id}`);
+  };
+
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit', separator: '.' };
     const date = new Date(dateString);
@@ -32,7 +35,7 @@ const Ad = () => {
   return (
     <div className='py-5 d-flex'>
       {ads.map((ad) => (
-        <Card key={ad._id} style={{ width: '18rem' }} className='mx-2'>
+        <Card key={ad._id} style={{ width: '18rem'}} className='mx-2'>
           <Card.Img variant="top" src={IMAGES_URL + ad.image} alt='image here' />
           <Card.Body>
             <Card.Title>{ad.title}</Card.Title>
@@ -45,7 +48,7 @@ const Ad = () => {
           </ListGroup>
           <Card.Body>
             <Button variant="warning" type="submit">SEE MORE</Button>
-            {ad.user.login === currentUser && <NavLink href="/removeAd"><Button variant="danger" type="submit" className='mx-1'>REMOVE</Button></NavLink>}
+            {ad.user.login === currentUser &&<Button variant="danger" type="submit" className='mx-1' onClick={() => handleRemove(ad._id)}>REMOVE</Button>}
             {ad.user.login === currentUser &&<Button variant="warning" type="submit" onClick={() => handleEdit(ad._id)}>EDIT</Button>}
           </Card.Body>
         </Card>

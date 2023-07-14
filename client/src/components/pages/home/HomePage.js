@@ -6,6 +6,8 @@ import { Button, NavLink, Form } from 'react-bootstrap';
 import { getUser } from '../../../redux/usersRedux';
 import { useSelector } from 'react-redux';
 
+import SearchForm from '../searchBar/SearchBar';
+
 const HomePage = () => {
 
   const loggedInUser = useSelector(getUser);
@@ -17,15 +19,8 @@ const HomePage = () => {
       <Row>
         <Col className='mt-5' xs='8'>
           <div className='d-flex align-items-center mt-5 justify-content-between'>
-            <h1>announcements</h1>
-              <Form className="d-flex">
-                <Form.Control
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-              </Form>
+            <h1>announcements</h1>              
+            <SearchForm/>
             <div>
             <NavLink href="/ads/add">
             {loggedInUser &&<Button className='mx-2' variant='warning'>ADD AD</Button>}
