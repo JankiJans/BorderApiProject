@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { API_URL } from '../../../config';
 import { getAdById, editAd, fetchAds } from '../../../redux/adsRedux';
 import EditAdd from './addEdit';
-import { Alert, Spinner } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 const EditAds = () => {
   const [ status, setStatus] = useState(null)

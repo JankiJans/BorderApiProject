@@ -23,6 +23,7 @@ const Login = () => {
 
     const options = {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },

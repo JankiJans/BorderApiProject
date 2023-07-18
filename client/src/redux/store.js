@@ -4,12 +4,10 @@ import { applyMiddleware, compose, combineReducers, legacy_createStore as create
 import initialState from './initialState'
 import usersReducer from './usersRedux';
 import adsReducer from './adsRedux'
-import searchStringReducer from './searchStringRedux';
 
 const subreducers = {
   user: usersReducer,
   ads: adsReducer,
-  searchString: searchStringReducer
 }
 const reducer = combineReducers(subreducers);
 

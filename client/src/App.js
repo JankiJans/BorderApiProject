@@ -7,9 +7,10 @@ import Register from './components/pages/register/RegisterPage'
 import Login from './components/pages/login/LoginPage';
 import Logout from './components/pages/logut/LogutPage';
 import AdAdd from './components/pages/adAdd/adAdd'
-// import EditAdd from './components/pages/addEdit/addEdit';
 import RemoveAd from './components/pages/adRemove/adRemove';
 import EditAds from './components/pages/addEdit/addEditPage';
+import SeeMore from './components/pages/seeMorePage/SeeMorePage';
+import NotFound from './components/pages/notFound/NotFoundPage';
 
 //redux imports
 import { useDispatch } from 'react-redux';
@@ -37,6 +38,8 @@ function App() {
         <Route path="/ads/add" element={<AdAdd/>} />
         <Route path="/ads/edit/:id" element={<EditAds/>} />
         <Route path="/ads/remove/:id" element={<RemoveAd/>} />
+        <Route path="/ads/:id" element={<SeeMore/>} />
+        <Route path="*" element={<NotFound />} />     
       </Routes>
     </MainLayout>
   );

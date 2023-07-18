@@ -1,9 +1,7 @@
 import { API_URL } from "../../../config";
 import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-// import { addAd } from "../../../redux/adsRedux";
-// import { getUser } from "../../../redux/usersRedux";
+
+import { useNavigate } from "react-router-dom";
 
 import { Form, Alert, Spinner, Button } from "react-bootstrap";
 
@@ -16,6 +14,8 @@ const AdAdd = () => {
   const [date, setDate] = useState('')
   const [status, setStatus] = useState(null);
 
+  const navigate = useNavigate()
+  
   const currentUser = localStorage.getItem('loggedInUser');
   console.log(currentUser)
 
@@ -43,9 +43,9 @@ const AdAdd = () => {
      
       if (res.status === 200) {
         setStatus('success');
-        // setTimeout(() => {
-        //     navigate('/');
-        // }, 3000);
+        setTimeout(() => {
+            navigate('/');
+        }, 3000);
 
       } else if (res.status === 400) {
         setStatus('clientError');

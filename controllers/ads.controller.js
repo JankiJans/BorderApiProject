@@ -38,7 +38,7 @@ exports.post = async (req, res) => {
       ['image/png', 'image/jpeg', 'image/gif'].includes(fileType)
     ) {
 
-    console.log(req.session)
+    console.log(req.session.user.id)
 
     const newAd = new Ads({
       title: title,
@@ -47,19 +47,9 @@ exports.post = async (req, res) => {
       price: price,
       image: req.file.filename,
       location: location,
-      user: '64a6f24396e66a3e8424df0a'
+      user: req.session.user.id
       // userId: req.session.user._id
-    }) 
-
-    // if (!title || title.length < 5 || title.length > 20) {
-    //   // fs.unlinkSync(deleteFileInCaseOfError);
-    //   return res.status(400).send({ message: 'Title length should be between 10 and 50 characters' });
-    // }
-
-    // if (!description || description.length < 15 || description.length > 1000) {
-    //   // fs.unlinkSync(deleteFileInCaseOfError);
-    //   return res.status(400).send({ message: 'Description length should be between 20 and 1000 characters' });
-    // }
+    })
 
     await newAd.save();
     res.json({ message: 'OK' });
@@ -99,19 +89,18 @@ exports.update = async (req, res) => {
   }
 };
 
+
 exports.delete = async (req, res) => {
   try {
     const ad = await Ads.findById(req.params.id);
-    if (ad) {
-      // const imageDelete = path.join(__dirname, '../public/uploads/', ad.photo);
+    if(ad) {
       await Ads.deleteOne({ _id: req.params.id });
-      // fs.unlinkSync(imageDelete);
-      res.json({ message: 'Deleted', ad });
-    } else {
-      res.status(404).json({ message: 'Not found...' });
+      res.json({ message: 'Deleted' });
     }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    else res.status(404).json({ message: 'Not found...' });
+  }
+  catch(err){
+    res.status(500).json({ message: err });
   }
 };
 

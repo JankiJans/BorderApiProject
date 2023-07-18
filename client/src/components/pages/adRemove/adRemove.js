@@ -5,9 +5,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { removeAd } from '../../../redux/adsRedux';
 import { API_URL } from '../../../config';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const RemoveAd = () => {
+  const [deletedAnn, setDeletedAnn] = useState('');
   const [status, setStatus] = useState('');
 
   const { id } = useParams();
@@ -17,6 +18,12 @@ const RemoveAd = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  useEffect (() => {
+    if (adData) {
+      setDeletedAnn(adData);
+    }
+  }, [adData]);
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -30,7 +37,7 @@ const RemoveAd = () => {
       .then(res => {
         if (res.status === 200) {
           setStatus('success');
-          dispatch(removeAd(adData));
+          dispatch(removeAd(deletedAnn));
           setTimeout(() => {
             navigate('/')
           }, 2500);
